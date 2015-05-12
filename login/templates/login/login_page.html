@@ -1,0 +1,25 @@
+<html>
+<h2><center>LOGIN</center></h2>
+<form method="post" name="myform">
+{% csrf_token %}
+<table>
+<tr>
+<td>{{message}}</td>
+</tr>
+<tr>
+<td>NAME:</td>
+<td><input type=text name="id" value={{name}}></td>
+</tr>
+<tr>
+<td>PASSWORD:</td>
+<td><input type=password name="pwd"></td>
+</tr>
+</table>
+</br><input type=submit value="Submit!">
+</form>
+</html>
+
+<script type="text/javascript">
+document.myform.id.focus();
+</script>
+

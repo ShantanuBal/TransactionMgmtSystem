@@ -1,0 +1,90 @@
+<html>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="/static/buy/style.css" />
+
+<body>
+<h1><center><a href="/buy/">PURCHASE</a></center></h1>
+<div id="request"><h2><center>We request eveybody to clear their dues at the earliest!! Total Dues till date: {{dues}}</font></center></h2></div>
+
+<a href="/account/create_account">Create Account</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/account/top_up_account">Top Up Account</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/account/view_account">View Account</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin">Admin</a>
+
+</br>
+
+<div style="position: absolute; left: 650px; top: 130px;">
+<b>Last 20 transactions:</b>
+<table border="1" width=350>
+    <tr>
+        <td><b>Name</b></td>
+        <td><b>Amount</b></td>
+        <td><b>Type</b></td>
+    </tr>
+    {% for each in trans_data %}
+        <tr>
+        {% for element in each %}
+            <td>{{element}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+</div>
+
+<div style="position: absolute; left: 1020px; top: 130px;">
+<b>Top 10 dues list:</b>
+<table border="1">
+    <tr>
+        <td><b>Name</b></td>
+        <td><b>Amount</b></td>
+    </tr>
+    {% for each in dues_data %}
+        <tr>
+        {% for element in each %}
+            <td>{{element}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+</div>
+
+<form method="post" name="myform">
+{% csrf_token %}
+</br>
+<table>
+    <tr>
+        <td>4-digit PIN (Eg: a12b)</td>
+        <td><input type="password" name='roll_no' value={{roll_no}}></td>
+        <td><font color="red" size="2">{{message}}</font></td>
+    </tr>
+    <tr>
+        <td>Amount in Rs. (Eg: 10+15)</td>
+        <td><input type=text name='amount'></td>
+        <td><font color="red" size="2">{{negative_message}}</font></td>
+    </tr>
+    <tr>
+        <td></br><input type=submit value="Submit!"></td>
+    </tr>
+</table>
+</form>
+
+</br>
+{% if name %}
+Hi {{name}},
+</br>&nbsp;&nbsp;&nbsp;&nbsp;Your account balance is Rs. <b><font size=20 color={{color}}>{{amount}}</font></b>.
+</br>Thank you.
+{% endif %}
+
+</br></br>
+<!--<a href="/logout/">LOGOUT</a>-->
+</br></br>
+<img src="/static/buy/ad.jpg" alt="Place your message/advertisement/notice here for only Rs. 10 per day!" height="190" width="600"></img>
+
+</body>
+</html>
+
+<script type="text/javascript">
+document.myform.roll_no.focus();
+</script>
+

@@ -1,0 +1,44 @@
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="/static/account/style.css" />
+
+<body>
+<h1><center><a href="/account/create_account">CREATE ACCOUNT</a></center></h1>
+<form method="post" name="myform">
+{% csrf_token %}
+<TABLE>
+<tr>
+    <td>FULL NAME:</td>
+    <td><input type=text name='name'></td>
+</tr>
+<tr>
+    <td>Secret 4-digit PIN (eg: a23z):</td>
+    <td><input type=password name='roll_no'></td>
+</tr>
+<tr>
+    <td>Email ID:</td>
+    <td><input type=text name='email'></td>
+</tr>
+<tr>
+    <td>ADVANCE AMOUNT:</td>
+    <td><input type=text name='advance'></td>
+</tr>
+<tr>
+    <td>SECRET KEY:</td>
+    <td><input type=password name='key'></td>
+</tr>
+</TABLE>
+</br>
+<input type=submit value="Submit!">
+</form>
+</br>
+{{message}}
+</br></br>
+<a href="/buy/"><= GO BACK TO PURCHASE</a>
+</body>
+</html>
+
+<script type="text/javascript">
+document.myform.name.focus();
+</script>
+

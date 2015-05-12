@@ -1,0 +1,40 @@
+<html>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="/static/account/style.css" />
+
+<body>
+<h1><center>CREATE ACCOUNT</center></h1>
+<form method="post" name="myform">
+{% csrf_token %}
+<TABLE>
+<tr>
+    <td>Original PIN:</td>
+    <td><input type=password name='pin'></td>
+</tr>
+<tr>
+    <td>New PIN:</td>
+    <td><input type=password name='new_pin1'></td>
+</tr>
+<tr>
+    <td>Re-enter New PIN:</td>
+    <td><input type=password name='new_pin2'></td>
+</tr>
+</TABLE>
+</br>
+<input type=submit value="Submit!">
+</form>
+</br>
+{% if name %}
+Hi {{name}}, 
+{% endif %}
+<br/>
+{{message}}
+</br></br>
+<a href="/buy/"><= GO BACK TO PURCHASE</a>
+</body>
+</html>
+
+<script type="text/javascript">
+document.myform.pin.focus();
+</script>

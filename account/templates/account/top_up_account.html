@@ -1,0 +1,49 @@
+<html>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="/static/account/style.css" />
+
+<body>
+<h1><center><a href="/account/top_up_account">TOP UP ACCOUNT</a></center></h1>
+<form method="post" name="myform">
+{% csrf_token %}
+<TABLE>
+<tr>
+    <td>4-digit PIN:</td>
+    <td><input type="password" name='roll_no' value={{roll_no}}></td>
+</tr>
+<tr>
+    <td>AMOUNT:</td>
+    <td><input type=text name='amount' value={{top_up_amount}}></td>
+</tr>
+<tr>
+    <td>SECRET KEY:</td>
+    <td><input type=password name='key'></td>
+</tr>
+</TABLE>
+</br>
+<input type=submit value="Submit!">
+</form>
+
+{% if name %}
+Hi {{name}},
+</br>
+&nbsp;&nbsp;&nbsp;&nbsp;Thank you for depositing your money. Your new account balance is Rs. <b><font color={{color}}>{{amount}}</font></b>.
+</br>
+Have a nice day! :)
+{% endif %}
+
+{% if message %}
+{{message}}
+{% endif %}
+
+</br></br>
+<a href="/buy/"><= GO BACK TO PURCHASE</a>
+
+</body>
+</html>
+
+<script type="text/javascript">
+document.myform.roll_no.focus();
+</script>
+

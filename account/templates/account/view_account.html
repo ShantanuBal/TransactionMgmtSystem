@@ -1,0 +1,61 @@
+<html>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="/static/account/style.css" />
+
+<body>
+<h1><center><a href="/account/view_account">ACCOUNT DETAILS</a></center></h1>
+
+<a href="/account/change_pin">Change PIN</a>
+</br></br>
+
+<form method="post" name="myform">
+{% csrf_token %}
+<TABLE>
+<tr>
+    <td>ENTER YOUR 4-digit PIN:</td>
+    <td><input type="password" name='roll_no'></td>
+</tr>
+</TABLE>
+</br>
+<input type=submit value="Submit!">
+</form>
+</br>
+
+{% if name %}
+Hi {{name}},
+</br>
+&nbsp;&nbsp;&nbsp;&nbsp;Your account balance is Rs. <b><font color={{color}}>{{amount}}</font></b>.
+</br>
+Thank you.
+</br></br>
+<table border="1">
+    <tr>
+        <td>Amount (in Rs.)</td>
+        <td>Transaction Type</td>
+        <td>Date & Time</td>
+    </tr>
+    {% for each in timestamp_data %}
+        <tr>
+        {% for element in each %}
+            <td>{{element}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% if message %}
+{{message}}
+{% endif %}
+
+</br></br>
+<a href="/buy/"><= GO BACK TO PURCHASE</a>
+
+</body>
+</html>
+
+<script type="text/javascript">
+document.myform.roll_no.focus();
+</script>
+

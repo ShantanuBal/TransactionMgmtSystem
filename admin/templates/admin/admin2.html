@@ -1,0 +1,52 @@
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="/static/admin/style.css" />
+
+<body>
+<h1><center><a href="/admin/">Admin</a></center></h1>
+
+<form method="post" name="myform">
+{% csrf_token %}
+Enter Secret Key: &nbsp&nbsp <input type="password" name="sk">
+</br>
+<input type="submit">
+</form>
+
+</br></br>
+<a href="/buy/"><= GO BACK TO PURCHASE</a>
+</br></br>
+
+{% if data %}
+
+<table border="1">
+<tr>
+    <td><font size=6>S.NO.</font></td>
+    <td><font size=6>NAME</font></td>
+    <td><font size=6>ADVANCE/DUES</font></td>
+</tr>
+{% for each in data %}
+    <tr>
+    <td><font size=4><b>{{ forloop.counter }}</b></font></td>
+    {% for element in each %}
+        <td><font size=5 {% if element < -200 %}color='red'{% else %}color='black'{% endif %}><b>{{element}}</b></font></td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+
+<tr>
+    <td></td>
+    <td><font size=6>TOTAL</font></td>
+    <td><font size=6>{{sum}}</font></td>
+</tr>
+</table>
+
+</br></br>
+<a href="/buy/"><= GO BACK TO PURCHASE</a>
+
+{% endif %}
+</body>
+</html>
+
+<script type="text/javascript">
+document.myform.sk.focus();
+</script>
